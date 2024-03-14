@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def sendEmail(request):
 
@@ -12,3 +13,7 @@ def sendEmail(request):
     # )
     html = "<html><body>It is now.</body></html>" 
     return HttpResponse(html)
+    # 
+
+def index(request):
+    return render(request, 'index.html')

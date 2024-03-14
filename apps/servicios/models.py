@@ -11,4 +11,4 @@ class Pack(models.Model):
     nombre = models.CharField(max_length=240)
     descripcion = models.CharField(max_length=240)
     creado_en = models.DateTimeField(auto_now_add=True)
-    precio = models.DecimalField()
+    precio = models.DecimalField(max_digits=10, decimal_places=2)  # Adjust max_digits and decimal_places as per your requirement

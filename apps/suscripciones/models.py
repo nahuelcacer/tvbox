@@ -1,6 +1,6 @@
 from django.db import models
-from servicios.models import Pack
-from clientes.models import Cliente
+from apps.servicios.models import Pack
+from apps.clientes.models import Cliente
 
 class Suscripcion(models.Model):
     pack = models.ForeignKey(Pack, on_delete=models.CASCADE)
