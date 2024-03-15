@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Cliente, Contacto
+from django.http import HttpResponse, Http404
+from .models import Cliente, Contacto, Direccion
 from django.db.models import Q
-
 # Create your views here.
 
 
@@ -19,6 +18,17 @@ def agregarCliente(request):
         clienteAdd = Cliente.objects.create(nombre=nombre,dni=dni)
 
         contactoAdd = Contacto.objects.create(cliente=clienteAdd, celular=celular, email=email)
+
+        direccionAdd = Direccion.objects.create(
+            cliente=clienteAdd,
+            nombre_calle=calle, 
+            numero_calle=numero,
+            )
+
+
+
+
+        print(contactoAdd.email)
         print("Nombre:", nombre)
         print("DNI:", dni)
         print("Celular:", celular)
@@ -59,3 +69,28 @@ def listarCliente(request):
         }
         return render(request, 'clientes/listarClientes.html' ,context)
 
+def detalleCliente(request, cliente_id):
+    cliente = None
+    contacto_cliente = None
+    direccion_cliente = None
+    try:
+        cliente = Cliente.objects.get(pk=cliente_id)
+        contacto_cliente = Contacto.objects.get(cliente_id=cliente_id)
+        direccion_cliente = Direccion.objects.get(cliente_id=cliente_id)
+    except Cliente.DoesNotExist:
+        # raise Http404("El cliente no existe")
+        context = {
+            'message':'El cliente no existe'
+        }
+        return render(request, 'clientes/errorCliente.html', context)
+    except Contacto.DoesNotExist:
+        pass  # No hay contacto asociado, contacto_cliente ya es None
+    except Direccion.DoesNotExist:
+        pass 
+    
+    context = {
+        'cliente': cliente,
+        'contacto': contacto_cliente,
+        'direccion': direccion_cliente
+    }
+    return render(request, 'clientes/detalleCliente.html', context)

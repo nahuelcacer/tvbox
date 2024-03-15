@@ -24,7 +24,9 @@
             <td class="px-4 py-2 border">{{ cliente.nombre }}</td>
             <td class="px-4 py-2 border">{{ cliente.dni }}</td>
             <td class="px-4 py-2 border">
-                <button class="px-4 py-2 bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">Ver más</button>
+                <a href="{%url 'clientes:detailCliente' cliente.id %}">
+                    <button class="px-4 py-2 bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">Ver más</button>
+                </a>
             </td>
         </tr>
         {% endfor %}

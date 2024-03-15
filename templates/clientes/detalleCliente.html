@@ -1,0 +1,80 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+
+
+<div class="bg-gray-100 p-4 rounded-lg shadow-md justify-between">
+    <div class="font-semibold text-lg mb-2">{{ cliente.nombre }}</div>
+    <div class=" mb-4">
+        <div class="w-1/2 pr-2">
+            <div><span class="font-semibold">DNI:</span> {{ cliente.dni }}</div>
+        </div>
+
+        <div>
+
+            <div class="font-semibold mb-2">Contacto:</div>
+
+            <div>
+                <div><span class="font-semibold">Celular:</span> {{ contacto.celular }}</div>
+                <div><span class="font-semibold">Email:</span> {{ contacto.email }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="font-semibold mb-2">Dirección:</div>
+    <div class="flex">
+        <div class="w-3/4 pr-2">
+            <div><span class="font-semibold">Calle:</span> {{ direccion.nombre_calle }}</div>
+        </div>
+        <div class="w-1/4 pl-2">
+            <div><span class="font-semibold">Número:</span> {{ direccion.numero_calle }}</div>
+        </div>
+    </div>
+    <div class="my-4">
+        {% include 'clientes/enviarWsp.html' with numero=contacto.celular %}
+
+
+        
+    </div>
+    <div class="my-4">
+        {% include 'clientes/llamarCliente.html' with numero=contacto.celular %}
+
+
+        
+    </div>
+
+</div>
+<script>
+    function guardarUbicacion() {
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        function success(pos) {
+            const crd = pos.coords;
+
+            console.log("Tu ubicación actual es:");
+            console.log(`Latitud : ${crd.latitude}`);
+            console.log(`Longitud: ${crd.longitude}`);
+            console.log(`Más o menos ${crd.accuracy} metros.`);
+
+            alert(crd.longitude)
+        }
+
+        function error(err) {
+            alert(`ERROR(${err.code}): ${err.message}`);
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+
+    }
+
+
+</script>
+
+
+{% endblock content %}

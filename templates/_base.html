@@ -56,8 +56,26 @@
               -->
                 </div>
 
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Servicios</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Clientes</a>
+                <a href="#" class="text-sm font-semibold leading-6 text-grey-900">Servicios</a>
+                <!-- <a href="#" class="text-sm font-semibold leading-6 text-grey-900">Clientes</a> -->
+
+
+                <div class="relative" id="dropdownButton">
+                    <div onclick="toggleDropdown()"
+                        class="px-5 rounded cursor-pointer font-semibold text-grey-900 flex w-[130px] justify-between text-sm leading-6 items-center">
+                        <span>Clientes</span>
+                        <svg width="10px" height="10px" viewBox="0 0 1024 1024" class="icon"  version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000" /></svg>
+
+                    </div>
+                    <div id="dropdown"
+                        class="rounded border-grey-300 absolute top-[50px] bg-white w-[300px] shadow-md hidden">
+                        <a href="{% url 'clientes:addCliente' %}" class="cursor-pointer hover:bg-grey-300 p-4 block" >Agregar</a>
+                        <a href="{% url 'clientes:listCliente' %}" class="cursor-pointer hover:bg-grey-300 p-4 block" >Lista</a>
+                    </div>
+                </div>
+                
+
+
                 <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Suscripciones</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -124,22 +142,28 @@
         const closeMenuBtn = document.getElementById('closeMenuBtn');
         const menuContainer = document.getElementById('menuContainer');
         const openMenuBtn = document.getElementById('openMenuBtn')
-    
+
         function cerrarMenu() {
             menuContainer.style.display = 'none';
         }
-    
+
         function mostrarMenu() {
             menuContainer.style.display = 'block';
         }
-    
+
         closeMenuBtn.addEventListener('click', function () {
             cerrarMenu();
         });
-    
+
         openMenuBtn.addEventListener('click', function () {
             mostrarMenu();
         });
+    </script>
+    <script>
+        function toggleDropdown() {
+            let dropdown = document.querySelector('#dropdownButton #dropdown')
+            dropdown.classList.toggle('hidden')
+        }
     </script>
     <main class="container mx-auto px-4 py-8">
         {% block content %}
