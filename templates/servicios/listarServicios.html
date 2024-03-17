@@ -1,0 +1,44 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<div class="container mx-auto p-4">
+    <form action="" method="post" class="mb-8 max-w-md mx-auto md:max-w-full md:mx-0">
+        {% csrf_token %}
+        <h4 class="text-2xl font-semibold mb-4">Agregar Servicio</h4>
+        <div class="mb-4">
+            <input type="text" class="w-full px-4 py-2 rounded-md border border-gray-300 placeholder-gray-500 focus:outline-none focus:border-indigo-500" placeholder="Nombre" name="nombre" required>
+        </div>
+        <div class="mb-4">
+            <input type="text" class="w-full px-4 py-2 rounded-md border border-gray-300 placeholder-gray-500 focus:outline-none focus:border-indigo-500" placeholder="Descripción" name="descripcion" required>
+        </div>
+        <button type="submit" class="w-full px-4 py-2 bg-indigo-500 text-white font-semibold rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">Agregar</button>
+    </form>
+
+    <div class="container mt-4 p-4">
+        <h4 class="text-2xl font-semibold mb-4">Lista de Servicio</h4>
+
+        <table class="w-full border-collapse">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 bg-gray-200 text-gray-700 font-semibold border border-gray-300">ID</th>
+                    <th class="py-2 px-4 bg-gray-200 text-gray-700 font-semibold border border-gray-300">Nombre</th>
+                    <th class="py-2 px-4 bg-gray-200 text-gray-700 font-semibold border border-gray-300">Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for servicio in servicios %}
+                <tr>
+                    <td class="py-2 px-4 border border-gray-300">{{ servicio.id }}</td>
+                    <td class="py-2 px-4 border border-gray-300">{{ servicio.nombre }}</td>
+                    <td class="py-2 px-4 border border-gray-300">{{ servicio.descripcion }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock content %}
+

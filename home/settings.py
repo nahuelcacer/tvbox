@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.clientes',
     'apps.servicios',
     'apps.suscripciones',
+    'apps.planes',
 ]
 
 MIDDLEWARE = [
