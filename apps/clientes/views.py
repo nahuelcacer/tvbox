@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from .models import Cliente, Contacto, Direccion
+from apps.suscripciones.models import Suscripcion
 from django.db.models import Q
 # Create your views here.
 
@@ -73,10 +74,13 @@ def detalleCliente(request, cliente_id):
     cliente = None
     contacto_cliente = None
     direccion_cliente = None
+    suscripcion_activa = None
     try:
         cliente = Cliente.objects.get(pk=cliente_id)
         contacto_cliente = Contacto.objects.get(cliente_id=cliente_id)
         direccion_cliente = Direccion.objects.get(cliente_id=cliente_id)
+        suscripcion_activa = Suscripcion.objects.get(cliente_id=cliente_id)
+        print(suscripcion_activa)
     except Cliente.DoesNotExist:
         # raise Http404("El cliente no existe")
         context = {
@@ -86,11 +90,15 @@ def detalleCliente(request, cliente_id):
     except Contacto.DoesNotExist:
         pass  # No hay contacto asociado, contacto_cliente ya es None
     except Direccion.DoesNotExist:
+        pass
+    except Suscripcion.DoesNotExist:
         pass 
     
     context = {
         'cliente': cliente,
         'contacto': contacto_cliente,
-        'direccion': direccion_cliente
+        'direccion': direccion_cliente,
+        'suscripcion': suscripcion_activa,
+
     }
     return render(request, 'clientes/detalleCliente.html', context)

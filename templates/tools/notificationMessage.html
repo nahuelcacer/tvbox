@@ -1,0 +1,18 @@
+<div id="notification" style="display: none;" class="bg-green-500 text-white p-2 mb-4 rounded-md text-center"></div>
+<script>
+    // Espera a que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', function() {
+        // Obtén el mensaje de notificación del backend
+        const message = "{{ message }}";
+
+        // Si hay un mensaje, muéstralo en la notificación y ocúltalo después de 2 segundos
+        if (message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 2000); // Ocultar la notificación después de 2 segundos (2000 milisegundos)
+        }
+    });
+</script>

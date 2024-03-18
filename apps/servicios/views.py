@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Servicio
 # Create your views here.
 def listarServicios(request):
@@ -26,3 +26,14 @@ def listarServicios(request):
             'servicios': servicios
         }
         return render(request, 'servicios/listarServicios.html', context)
+
+
+def borrarServicio(request, servicio_id):
+    # servicio = Servicio.objects.delete(servicio_id)
+    servicio = Servicio.objects.get(pk=servicio_id)
+    servicio.delete()
+
+    print(servicio)
+    return redirect('servicios:listarServicios')
+
+

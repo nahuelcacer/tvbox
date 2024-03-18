@@ -29,7 +29,7 @@ def agregarPlanes(request):
 
         context = {
             'servicios': servicios,
-            'message': f'Se creo el plan  {plan_creado} con exito',
+            'message': f'Se creo el plan  {plan_creado.nombre} con exito',
         }
 
 

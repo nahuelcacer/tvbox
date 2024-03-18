@@ -6,9 +6,9 @@
     <div class="w-full max-w-md">
         <div class="flex justify-center ">
 
-            <h1 class="mb-4 text-2xl font-semibold text-center">AGREGAR PLAN</h1>
+            <h1 class="mb-4 text-2xl font-semibold text-center">EDITAR PLAN</h1>
         </div>
-        <div id="notification" style="display: none;" class="bg-green-500 text-white p-2 mb-4 rounded-md text-center"></div>
+        {% include 'tools/notificationMessage.html' %}
 
         <form action="" method="post">
             
@@ -23,21 +23,5 @@
         </form>
     </div>
 </div>
-<script>
-    // Espera a que el DOM esté completamente cargado
-    document.addEventListener('DOMContentLoaded', function() {
-        // Obtén el mensaje de notificación del backend
-        const message = "{{ message }}";
 
-        // Si hay un mensaje, muéstralo en la notificación y ocúltalo después de 2 segundos
-        if (message) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.style.display = 'block';
-            setTimeout(function() {
-                notification.style.display = 'none';
-            }, 2000); // Ocultar la notificación después de 2 segundos (2000 milisegundos)
-        }
-    });
-</script>
 {% endblock content %}

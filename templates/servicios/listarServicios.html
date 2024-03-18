@@ -17,13 +17,14 @@
 
     <div class="container mt-4 p-4">
         <h4 class="text-2xl font-semibold mb-4">Lista de Servicio</h4>
-
+        {% include 'tools/notificationMessage.html' %}
         <table class="w-full border-collapse">
             <thead>
                 <tr>
                     <th class="py-2 px-4 bg-gray-200 text-gray-700 font-semibold border border-gray-300">ID</th>
                     <th class="py-2 px-4 bg-gray-200 text-gray-700 font-semibold border border-gray-300">Nombre</th>
                     <th class="py-2 px-4 bg-gray-200 text-gray-700 font-semibold border border-gray-300">Descripción</th>
+                    <th class="py-2 px-4 bg-gray-200 text-gray-700 font-semibold border border-gray-300">*</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,11 @@
                     <td class="py-2 px-4 border border-gray-300">{{ servicio.id }}</td>
                     <td class="py-2 px-4 border border-gray-300">{{ servicio.nombre }}</td>
                     <td class="py-2 px-4 border border-gray-300">{{ servicio.descripcion }}</td>
+                    <td class="py-2 px-4 border border-gray-300">
+                        <a href="{% url 'servicios:borrarServicio' servicio.id %}" >
+                            {% include 'tools/botonEliminar.html' %}
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

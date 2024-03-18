@@ -5,11 +5,13 @@
 <div class="container mx-auto p-4">
     <h1>Planes</h1>
     <div>
-        <select onchange="obtenerPlanesPorServicio()" class="w-full mb-2 px-4 py-2 rounded-md border border-gray-300 placeholder-gray-500 focus:outline-none focus:border-indigo-500" name="servicio">
-            {% for servicio in servicios %}
-            <option value="{{servicio.id}}">{{servicio.nombre}}</option>
-            {% endfor %}
-        </select>
+            <select onchange="obtenerPlanesPorServicio()" class="w-full mb-2 px-4 py-2 rounded-md border border-gray-300 placeholder-gray-500 focus:outline-none focus:border-indigo-500" name="servicio">
+                <option value="" disabled selected hidden>Selecciona un servicio</option>
+
+                {% for servicio in servicios %}
+                <option value="{{servicio.id}}">{{servicio.nombre}}</option>
+                {% endfor %}
+            </select>
         
     </div>  
     <table class="w-full border-collapse mb-4">

@@ -10,6 +10,8 @@ class Plan(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)  # Adjust max_digits and decimal_places as per your requirement
 
 
+    def plan_nombre_servicio(self):
+        return f"{self.nombre} ({self.servicio.nombre})"
 
     def fecha_editado_str(self):
         return self.editado_en.strftime("%d-%m-%Y")

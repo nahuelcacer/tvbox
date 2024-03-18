@@ -34,16 +34,37 @@
         {% include 'clientes/enviarWsp.html' with numero=contacto.celular %}
 
 
-        
+
     </div>
     <div class="my-4">
         {% include 'clientes/llamarCliente.html' with numero=contacto.celular %}
 
 
-        
-    </div>
 
+    </div>
 </div>
+{% if suscripcion %}
+<div class="bg-gray-100 p-4 rounded-lg shadow-md justify-between mt-4">
+    <div class="font-semibold text-lg mb-2">SUSCRIPCION ACTIVA</div>
+
+    <span>{{suscripcion.comienzo_suscripcion_str}}</span>
+    <span>{{suscripcion.fin_suscripcion_str}}</span>
+    <span>{{suscripcion.dias_vencidos}}</span>
+    {% else %}
+
+    <div class="my-4">
+        <a href="{% url 'suscripciones:addSuscripcion' cliente.id %}">
+
+
+            <button class="py-2 px-4 bg-green-500 rounded-md text-white ">
+                Agregar suscripcion
+            </button>
+        </a>
+
+    </div>
+</div>
+    {% endif %}
+
 <script>
     function guardarUbicacion() {
         const options = {
