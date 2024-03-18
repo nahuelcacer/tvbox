@@ -1,0 +1,50 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="bg-gray-100 p-4 rounded-lg shadow-md justify-between">
+    <div class="font-semibold text-lg mb-2">{{ plan.nombre }}</div>
+    <div class=" mb-4">
+        <div class="w-1/2 pr-2">
+            <div><span class="font-semibold">Descripcion:</span> {{ plan.descripcion }}</div>
+        </div>
+
+
+
+            <div class="font-semibold mb-2 mt-2">Servicio</div>
+
+            <div>
+                <div><span class="font-semibold">Nombre:</span> {{ servicio.nombre }}</div>
+                <div><span class="font-semibold">Desc:</span> {{ servicio.descripcion }}</div>
+            </div>
+
+    </div>
+    <div class="font-semibold mb-2">Precio:</div>
+    <div class="flex">
+        <div class="w-3/4 pr-2">
+            <div><span class="font-semibold"></span> {{ plan.precio }}</div>
+        </div>
+        <div class="w-1/4 pl-2">
+            <!-- <div><span class="font-semibold">Número:</span> {{ direccion.numero_calle }}</div> -->
+        </div>
+    </div>
+    <div class="my-4">
+        <!-- {% include 'clientes/enviarWsp.html' with numero=contacto.celular %} -->
+        <a href="{% url 'planes:editarPlan' plan.id %}">
+            Editar
+        </a>
+        <button
+        onclick="history.back()"
+        class="px-4 py-3 rounded-md bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+        type="submit">Volver</button>
+        
+    </div>
+    <div class="my-4">
+        <!-- {% include 'clientes/llamarCliente.html' with numero=contacto.celular %} -->
+
+
+        
+    </div>
+
+</div>
+
+{% endblock content %}

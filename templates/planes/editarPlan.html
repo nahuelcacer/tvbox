@@ -1,0 +1,43 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<div class="flex justify-center">
+    <div class="w-full max-w-md">
+        <div class="flex justify-center ">
+
+            <h1 class="mb-4 text-2xl font-semibold text-center">AGREGAR PLAN</h1>
+        </div>
+        <div id="notification" style="display: none;" class="bg-green-500 text-white p-2 mb-4 rounded-md text-center"></div>
+
+        <form action="" method="post">
+            
+            {% csrf_token %}
+
+            <input type="text" class="w-full mb-2 px-4 py-2 rounded-md border border-gray-300 placeholder-gray-500 focus:outline-none focus:border-indigo-500" placeholder="Nombre" name="nombre" value={{plan.nombre}} required>
+            <input type="text" class="w-full mb-2 px-4 py-2 rounded-md border border-gray-300 placeholder-gray-500 focus:outline-none focus:border-indigo-500" placeholder="Descripcion" name="descripcion" value={{plan.descripcion}} required>
+            <input type="number" class="w-full mb-2 px-4 py-2 rounded-md border border-gray-300 placeholder-gray-500 focus:outline-none focus:border-indigo-500" placeholder="$ 0.00" name="precio" value={{plan.precio}} required>
+            <button
+            class="w-full px-4 py-3 rounded-md bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+            type="submit">Editar</button>
+        </form>
+    </div>
+</div>
+<script>
+    // Espera a que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', function() {
+        // Obtén el mensaje de notificación del backend
+        const message = "{{ message }}";
+
+        // Si hay un mensaje, muéstralo en la notificación y ocúltalo después de 2 segundos
+        if (message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 2000); // Ocultar la notificación después de 2 segundos (2000 milisegundos)
+        }
+    });
+</script>
+{% endblock content %}
