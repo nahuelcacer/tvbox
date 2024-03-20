@@ -1,0 +1,56 @@
+<div class="container mx-auto mt-10">
+    <div class="relative" id="collapse-container-{{title}}">
+        <!-- Botón para activar/desactivar el collapse -->
+        <button id="collapse-btn-{{title}}" class="bg-blue-500  font-semibold py-2 rounded flex flex-row w-full justify-between">
+            {{title}}
+            <svg id="collapse-svg-{{title}}" width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                transform="rotate(180)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"
+                        fill="#0F0F0F"></path>
+                </g>
+            </svg>
+
+        </button>
+        <!-- Contenido que se colapsará o expandirá -->
+        <div id="collapse-{{title}}" class="absolute bg-white w-full border rounded mt-2 hidden overflow-hidden">
+            <div class="transition-all max-h-0 overflow-hidden">
+                <a href="{% url url1 %}" class="block px-4 py-2 hover:bg-gray-200">{{url1nombre}}</a>
+                <a href="{% url url2 %}" class="block px-4 py-2 hover:bg-gray-200">{{url2nombre}}</a>
+
+            </div>
+        </div>
+    </div>
+    <!-- Elementos que se desplazarán hacia abajo -->
+
+</div>
+
+<!-- Script para manejar el evento de clic y alternar la visibilidad del collapse -->
+<script>
+    document.getElementById('collapse-btn-{{title}}').addEventListener('click', function () {
+        var svg = document.getElementById("collapse-svg-{{title}}");
+        var currentTransform = svg.getAttribute("transform");
+        var content = document.getElementById('collapse-{{title}}');
+        var container = document.getElementById('collapse-container-{{title}}');
+        var newTransform;
+
+        // Alternar la clase 'hidden' para mostrar u ocultar el contenido
+        content.classList.toggle('hidden');
+
+        // Si el contenido está visible, ajustar la altura del contenedor principal
+        if (!content.classList.contains('hidden')) {
+            container.style.height = (container.clientHeight + content.clientHeight) + 'px';
+            newTransform = currentTransform.replace("rotate(180)", "rotate(0)");
+        } else {
+            // Si el contenido está oculto, restablecer la altura del contenedor principal
+            container.style.height = 'auto';
+            newTransform = currentTransform.replace("rotate(0)", "rotate(180)");
+            // container.style.height = (container.clientHeight - content.clientHeight) + 'px';
+        }
+        svg.setAttribute("transform", newTransform);
+
+    });
+</script>

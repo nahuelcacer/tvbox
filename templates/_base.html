@@ -61,7 +61,9 @@
 
                 <a href="{% url 'servicios:listarServicios' %}"
                     class="text-sm font-semibold leading-6 text-grey-900">Servicios</a>
-              
+
+
+
                 <!-- <a href="#" class="text-sm font-semibold leading-6 text-grey-900">Clientes</a> -->
 
                 <div class="relative" id="dropdownButtonPlan">
@@ -105,7 +107,8 @@
 
 
 
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Suscripciones</a>
+                <a href="{% url 'suscripciones:listSuscripcion'%}"
+                    class="text-sm font-semibold leading-6 text-gray-900">Suscripciones</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
@@ -117,6 +120,7 @@
             <!-- Background backdrop, show/hide based on slide-over state. -->
             <!-- <div class="fixed inset-0 z-10"></div> -->
             <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+            style="display: none;"
                 id="menuContainer">
                 <div class="flex items-center justify-between">
                     <a href="#" class="-m-1.5 p-1.5">
@@ -135,27 +139,13 @@
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
-                            <div class="-mx-3">
-                                <button type="button"
-                                    class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                                    aria-controls="disclosure-1" aria-expanded="false">
-                                    Product
-                                    <!--
-                        Expand/collapse icon, toggle classes based on menu open state.
-      
-                        Open: "rotate-180", Closed: ""
-                      -->
-
-                                </button>
-                                <!-- 'Product' sub-menu, show/hide based on menu state. -->
-
-                            </div>
-                            <a href="#"
-                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
-                            <a href="#"
-                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
-                            <a href="#"
-                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+                            <a href="{% url 'servicios:listarServicios' %}"
+                                class="font-semibold leading-6 text-grey-900 -mx-3 px-3 py-2">Servicios</a>
+                                {% include 'tools/botonCollapse.html' with title="Clientes" url1nombre="Agregar" url1="clientes:addCliente"   url2nombre="Listar" url2="clientes:listCliente"%}
+                                {% include 'tools/botonCollapse.html' with title="Planes" url1nombre="Agregar" url1="planes:addPlan"   url2nombre="Listar" url2="planes:listPlan"%}
+                                
+                                <a href="{% url 'suscripciones:listSuscripcion' %}"
+                                class="font-semibold leading-6 text-grey-900 -mx-3 px-3 py-2">Suscripciones</a>
                         </div>
                         <div class="py-6">
                             <a href="#"
@@ -167,6 +157,7 @@
             </div>
         </div>
     </header>
+
     <script>
         const closeMenuBtn = document.getElementById('closeMenuBtn');
         const menuContainer = document.getElementById('menuContainer');

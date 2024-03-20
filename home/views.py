@@ -17,3 +17,4 @@ def sendEmail(request):
 
 def index(request):
     return render(request, 'home.html')
+

@@ -4,6 +4,7 @@ from . import views
 app_name = 'suscripciones'
 
 urlpatterns = [
-    path('agregar/<int:cliente_id>', views.agregarSuscripcion, name="addSuscripcion")
+    path('agregar/<int:cliente_id>', views.agregarSuscripcion, name="addSuscripcion"),
+    path('lista/', views.listarSuscripciones, name="listSuscripcion")
 
 ]

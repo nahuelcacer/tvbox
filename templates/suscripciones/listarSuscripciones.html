@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="w-full">
+        <span>Suscripciones activas: {{suscripciones_activas}}</span>
+
+    </div>
+    <table class="w-full sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
+        <thead>
+            <tr>
+                <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-indigo-500 text-white  font-semibold text-gray-600 uppercase tracking-wider">
+                    Cliente</th>
+                <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-indigo-500 text-white  font-semibold text-gray-600 uppercase tracking-wider">
+                    Fin</th>
+                <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-indigo-500 text-white  font-semibold text-gray-600 uppercase tracking-wider">
+                    Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for susc in suscripciones %}
+            <tr>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center" style="white-space: nowrap;">{{ susc.cliente.nombre }}</td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center"><span style="white-space: nowrap;">{{ susc.fin_suscripcion_str }}</span></td>
+                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center" style="white-space: nowrap;">{{ susc.plan.precio_str }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock content %}

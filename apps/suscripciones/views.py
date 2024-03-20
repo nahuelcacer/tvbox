@@ -8,10 +8,12 @@ from datetime import datetime, timedelta
 
 
 def agregarSuscripcion(request, cliente_id):
+
     if request.method == 'POST':
         comienzo_suscripcion = request.POST.get('comienzo_suscripcion')
         plan = request.POST.get('plan')
         equipo = request.POST.get('equipo')
+        estado = True
 
 
 
@@ -31,7 +33,9 @@ def agregarSuscripcion(request, cliente_id):
             cliente=cliente_seleccionado,
             equipo=equipo,
             comienzo_suscripcion = fecha_comienzo_obj,
-            fin_suscripcion = fecha_final_obj
+            fin_suscripcion = fecha_final_obj,
+            estado=estado
+            
         )
 
         return redirect('clientes:detailCliente', cliente_id=cliente_id)
@@ -44,3 +48,14 @@ def agregarSuscripcion(request, cliente_id):
             'planes':planes,
         }
         return render(request, 'suscripciones/agregarSuscripcion.html', context)
+
+def listarSuscripciones(request):
+    susc = Suscripcion.objects.all().order_by('fin_suscripcion')
+
+    suscripciones_activas = Suscripcion.objects.filter(estado=True).count()   
+    context = {
+        'suscripciones':susc,
+        'suscripciones_activas':suscripciones_activas
+    }
+
+    return render(request, 'suscripciones/listarSuscripciones.html', context)

@@ -26,5 +26,6 @@ class Suscripcion(models.Model):
         return self.fin_suscripcion.strftime("%d-%m-%Y")
     
     def dias_vencidos(self):
-        return self.fin_suscripcion - timezone.now()
+        dias_restantes = (self.fin_suscripcion - timezone.now()).days
+        return f"{dias_restantes} días"
    

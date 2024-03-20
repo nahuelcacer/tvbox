@@ -45,11 +45,35 @@
 </div>
 {% if suscripcion %}
 <div class="bg-gray-100 p-4 rounded-lg shadow-md justify-between mt-4">
+    {% if suscripcion.estado %}
     <div class="font-semibold text-lg mb-2">SUSCRIPCION ACTIVA</div>
+    {% else %}
+    <div class="font-semibold text-lg mb-2">SUSCRIPCION NO ACTIVA</div>
 
-    <span>{{suscripcion.comienzo_suscripcion_str}}</span>
-    <span>{{suscripcion.fin_suscripcion_str}}</span>
-    <span>{{suscripcion.dias_vencidos}}</span>
+    {% endif %}
+    <div class="flex flex-col lg:items-center py-2">
+        <div class="mb-4 md:mb-0 md:mr-4">
+            <p class="text-lg font-semibold">Comienzo</p>
+            <span>{{ suscripcion.comienzo_suscripcion_str }}</span>
+        </div>
+        <div class="mb-4 md:mb-0 md:mx-4">
+            <p class="text-lg font-semibold">Fin</p>
+            <span>{{ suscripcion.fin_suscripcion_str }}</span>
+        </div>
+        <div class="mb-4 md:mb-0 md:mx-4">
+            <p class="text-lg font-semibold">Días restantes</p>
+            <span>{{ suscripcion.dias_vencidos }}</span>
+        </div>
+        <div class="mb-4 md:mb-0 md:mx-4">
+            <p class="text-lg font-semibold">Plan</p>
+            <span>{{ suscripcion.plan.nombre }}</span>
+        </div>
+        <div class="mb-4 md:mb-0 md:mx-4">
+            <p class="text-lg font-semibold">Servicio</p>
+            <span>{{ suscripcion.plan.servicio.nombre }}</span>
+        </div>
+    </div>
+    
     {% else %}
 
     <div class="my-4">
@@ -63,7 +87,7 @@
 
     </div>
 </div>
-    {% endif %}
+{% endif %}
 
 <script>
     function guardarUbicacion() {
