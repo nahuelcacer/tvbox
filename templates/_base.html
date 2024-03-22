@@ -2,7 +2,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -141,6 +141,8 @@
                         <div class="space-y-2 py-6">
                             <a href="{% url 'servicios:listarServicios' %}"
                                 class="font-semibold leading-6 text-grey-900 -mx-3 px-3 py-2">Servicios</a>
+
+                            
                                 {% include 'tools/botonCollapse.html' with title="Clientes" url1nombre="Agregar" url1="clientes:addCliente"   url2nombre="Listar" url2="clientes:listCliente"%}
                                 {% include 'tools/botonCollapse.html' with title="Planes" url1nombre="Agregar" url1="planes:addPlan"   url2nombre="Listar" url2="planes:listPlan"%}
                                 

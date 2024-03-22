@@ -53,7 +53,6 @@ def listarCliente(request):
         buscador = request.POST.get('buscador')
         
         listarCliente = Cliente.objects.all()
-        
 
         if buscador is not None and not ' ' in buscador:
             clientes = listarCliente.filter(Q(nombre__icontains=buscador) | Q(dni__icontains=buscador))
