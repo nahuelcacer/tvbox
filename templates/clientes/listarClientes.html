@@ -4,49 +4,50 @@
 
 <div class="max-w-7xl mx-auto">
     <div class="flex mb-4">
-        <form action="" method="post" class="flex items-center">
+        <style>
+            @media (max-width: 640px) {
+                .flex-container-form {
+                    width: 100%;
+                }
+            }
+        </style>
+        <form action="" method="post" class="flex items-center flex-container-form">
             {%csrf_token%}
             <input id="buscador" name="buscador"
-                class="w-3/4 flex-1 mr-2 px-4 py-3 rounded-md border border-gray-300 placeholder-gray-500 focus:outline-none focus:border-indigo-500"
+                class="flex-1 mr-2 px-4 py-3 rounded-md border border-gray-300 placeholder-gray-500 focus:outline-none focus:border-indigo-500"
                 type="text" placeholder="Buscar por nombre o DNI">
             <button type="submit"
-                class="w-1/4 px-4 py-3 rounded-md bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">Buscar</button>
+                class="px-4 py-3 rounded-md bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">Buscar</button>
         </form>
     </div>
-    <!-- <table class="w-full border-collapse mb-4">
-        <thead>
-            <tr>
-                <th class="px-4 py-2 bg-indigo-500 text-white font-semibold">Cliente</th>
-                <th class="px-4 py-2 bg-indigo-500 text-white font-semibold">DNI</th>
-                <th class="px-4 py-2 bg-indigo-500 text-white font-semibold">Ver más info</th>
 
-            </tr>
-        </thead>
-        <tbody>  -->
-            <!-- Aquí irían los datos de los clientes, debes adaptar este código según tu lógica de visualización -->
-            {% for cliente in clientes %}
-            <!-- <tr class="mb-4"> -->
-                <!-- <td class="py-2 justify-between "> -->
-                    <div class="flex flex-row justify-between space-y-2">
-                        <div class="flex flex-col">
-                            <span class="font-semibold text-sm">{{ cliente.nombre }}</span>
-                            <span class="font-semibold text-sm" style="color: rgba(128, 128, 128, 0.856);">{{ cliente.dni }}</span>
-                        </div>
-                    
-                        <a href="{%url 'clientes:detailCliente' cliente.id %}" class="self-end">
-                            <button class="px-4 py-2 bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">
-                                Ver más
-                            </button>
-                        </a>
-                    </div>
-                <!-- </td> -->
-                <!-- <td class="px-4 py-2 border text-sm">{{ cliente.dni }}</td> -->
-            <!-- </tr> -->
-            {% endfor %}
-        <!-- </tbody>
-    </table> -->
+    {% for cliente in clientes %}
 
+    <style>
+        .flex-container:active {
+            background-color: rgb(221, 221, 221);
+        }
+    </style>
+    
+    <a href="{%url 'clientes:detailCliente' cliente.id %}" style="touch-action: auto; cursor: pointer;">
+        <div class="flex flex-row justify-between space-y-2 flex-container items-center p-2">
+            <div class="flex flex-col">
+                <span class="font-semibold text-sm">{{ cliente.nombre }}</span>
+                <span class="font-semibold text-sm" style="color: rgba(99, 101, 241, 0.555)">{{ cliente.dni }}</span>
+            </div>
+            <div class="flex flex-col">
+                <span>{{cliente.}}</span>
 
+            </div>
+        </div>
+    </a>
+    <!-- <a href="{%url 'clientes:detailCliente' cliente.id %}" class="self-end">
+        <button
+        class="px-3 rounded-lg py-2 bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">
+        Ver más
+    </button>
+</a> -->
+    {% endfor %}
 </div>
 
 {% endblock content %}
