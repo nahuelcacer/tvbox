@@ -29,4 +29,4 @@ class Direccion(models.Model):
 
     # Ejemplo de método para obtener la dirección completa
     def direccion_completa(self):
-        return f"{self.nombre_calle} {self.numero_calle}, {self.ciudad}, {self.estado}, {self.pais}, {self.codigo_postal}"
+        return f"{self.nombre_calle} {self.numero_calle}"

@@ -4,90 +4,86 @@
 
 
 
-<div class="bg-gray-100 p-4 rounded-lg shadow-md justify-between">
-    <div class="font-semibold text-lg mb-2">{{ cliente.nombre }}</div>
-    <div class=" mb-4">
-        <div class="w-1/2 pr-2">
-            <div><span class="font-semibold">DNI:</span> {{ cliente.dni }}</div>
+<div class="container-detalle-cliente">
+    <div class="container-datos-personales">
+        <h1 style="font-weight: 600; font-size: 1.125rem;">{{cliente.nombre}}</h1>
+        <div class="datos-container"> 
+
+            <label class="label-datos">
+                DNI
+            </label>
+            <span class="datos">
+                {{cliente.dni}}
+            </span>
         </div>
+        <div class="datos-container"> 
 
-        <div>
+            <label class="label-datos">
+                Telefono
+            </label>
+            <span class="datos">
+                {{contacto.celular}}
+            </span>
+        </div>
+        <div class="datos-container"> 
 
-            <div class="font-semibold mb-2">Contacto:</div>
+            <label class="label-datos">
+                Email:
+            </label>
+            <span class="datos">
+                {{contacto.email}}
+            </span>
+        </div>
+        <div class="datos-container"> 
 
-            <div>
-                <div><span class="font-semibold">Celular:</span> {{ contacto.celular }}</div>
-                <div><span class="font-semibold">Email:</span> {{ contacto.email }}</div>
-            </div>
+            <label class="label-datos">
+                Direccion:
+            </label>
+            <span class="datos">
+                {{direccion.direccion_completa}}
+            </span>
         </div>
     </div>
-    <div class="font-semibold mb-2">Dirección:</div>
-    <div class="flex">
-        <div class="w-3/4 pr-2">
-            <div><span class="font-semibold">Calle:</span> {{ direccion.nombre_calle }}</div>
-        </div>
-        <div class="w-1/4 pl-2">
-            <div><span class="font-semibold">Número:</span> {{ direccion.numero_calle }}</div>
-        </div>
-    </div>
-    <div class="my-4">
+    <div style="display: flex; flex-direction: row; gap: 10px; align-items: center;">
+
         {% include 'clientes/enviarWsp.html' with numero=contacto.celular %}
-
-
-
-    </div>
-    <div class="my-4">
+        
+        
+        
         {% include 'clientes/llamarCliente.html' with numero=contacto.celular %}
-
-
-
     </div>
+
+
 </div>
-{% if suscripcion %}
-<div class="bg-gray-100 p-4 rounded-lg shadow-md justify-between mt-4">
-    {% if suscripcion.estado %}
-    <div class="font-semibold text-lg mb-2">SUSCRIPCION ACTIVA</div>
-    {% else %}
-    <div class="font-semibold text-lg mb-2">SUSCRIPCION NO ACTIVA</div>
+<style>
+    .container-detalle-cliente {
+        width: 80%;
+        margin: auto;
 
-    {% endif %}
-    <div class="flex flex-col lg:items-center py-2">
-        <div class="mb-4 md:mb-0 md:mr-4">
-            <p class="text-lg font-semibold">Comienzo</p>
-            <span>{{ suscripcion.comienzo_suscripcion_str }}</span>
-        </div>
-        <div class="mb-4 md:mb-0 md:mx-4">
-            <p class="text-lg font-semibold">Fin</p>
-            <span>{{ suscripcion.fin_suscripcion_str }}</span>
-        </div>
-        <div class="mb-4 md:mb-0 md:mx-4">
-            <p class="text-lg font-semibold">Días restantes</p>
-            <span>{{ suscripcion.dias_vencidos }}</span>
-        </div>
-        <div class="mb-4 md:mb-0 md:mx-4">
-            <p class="text-lg font-semibold">Plan</p>
-            <span>{{ suscripcion.plan.nombre }}</span>
-        </div>
-        <div class="mb-4 md:mb-0 md:mx-4">
-            <p class="text-lg font-semibold">Servicio</p>
-            <span>{{ suscripcion.plan.servicio.nombre }}</span>
-        </div>
-    </div>
-    
-    {% else %}
+    }
 
-    <div class="my-4">
-        <a href="{% url 'suscripciones:addSuscripcion' cliente.id %}">
+    .container-datos-personales {
+        /* background-color: aqua; */
+        padding: 1rem;
+    }
+
+    .datos {
+        color: rgb(105, 105, 105);
+        font-weight: 500;
+    }
+
+    .label-datos {
+        color: rgb(105, 105, 105);
+
+    }
+    .datos-container {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 
 
-            <button class="py-2 px-4 bg-green-500 rounded-md text-white ">
-                Agregar suscripcion
-            </button>
-        </a>
 
-    </div>
-</div>
-{% endif %}
 
 <script>
     function guardarUbicacion() {

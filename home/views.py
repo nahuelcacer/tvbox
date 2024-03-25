@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from apps.suscripciones.models import Suscripcion
 def sendEmail(request):
 
     # send_mail(
@@ -16,5 +16,10 @@ def sendEmail(request):
     # 
 
 def index(request):
-    return render(request, 'home.html')
+    sus = Suscripcion.objects.all()
+    context = {
+        'sus':sus
+    }
+    
+    return render(request, 'home.html', context)
 

@@ -2,7 +2,18 @@
 
 {% block content %}
 
-<div>
-    Inicio
+<div class="max-w-md mx-auto">
+    {% for item in sus %}
+        <div>
+            <div>
+            {{item.cliente.nombre}}
+
+        </div>
+            <div>
+                {{item.fin_suscripcion_str}}
+            </div>
+
+        </div>
+    {% endfor %}
 </div>
 {% endblock content %}
