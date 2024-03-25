@@ -16,7 +16,8 @@
         </select>
 
     </div>
-    <div id="cuerpoTabla">
+    <div id="cuerpoTabla" >
+
         <div class="max-w-md mt-8" style="color:rgb(110,110,110,0.8)"><span class="mx-auto">Ningun servicio seleccionado</span></div>
     </div>
 </div>
@@ -46,11 +47,18 @@
                         </style>
                         <a href="${url}">
                             <div class="flex flex-row justify-between space-y-2 items-center flex-container p-2 rounded">
-                                <div class="flex flex-col">
+                                <div class="flex flex-col" style="margin-rigth:2px;">
                                     <span class="font-semibold text-sm">${plan.nombre}</span>
                                     <span class="text-sm">${plan.descripcion}</span>
-                                    <span class="text-sm" style="color:rgb(110,110,110,0.8)">creado: ${plan.creado_en}</span>
-                                    <span class="text-sm" style="color:rgb(110,110,110,0.8)">ultima edicion: ${plan.editado_en}</span>
+                                    <div class="flex flex-row">
+                                        
+                                        <span class="text-sm" style="color:rgb(110,110,110,0.8); margin-right: 1rem;">
+                                        ultima edicion: 
+                                        {% include 'tools/chip.html' with fecha="${plan.editado_en}" %}
+                                        
+                                        </span>
+                                    </div>
+                                    
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="font-bold" style="color: rgba(99, 101, 241)">${plan.precio}</span>
